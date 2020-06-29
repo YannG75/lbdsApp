@@ -1,29 +1,56 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import Home from '../views/Home.vue';
+import Contact from '../views/Contact'
+import Catalogue from "../views/Catalogue";
+import News from "../views/News";
+import Sneaker from "../views/Sneaker";
+import Article from "../views/Article";
+import Search from "../views/Search";
+import {IonicVueRouter} from '@ionic/vue';
 
-Vue.use(VueRouter)
+Vue.use(IonicVueRouter);
 
-  const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+export default new IonicVueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/contact',
+            name: 'contact',
+            component: Contact
+        },
+        {
+            path: '/products',
+            name: 'products',
+            component: Catalogue
+        },
+        {
+            path: '/news',
+            name: 'news',
+            component: News
+        },
+        {
+            path: '/products/:id',
+            name: 'product',
+            component: Sneaker
+        },
+        {
+            path: '/news/:id',
+            name: 'article',
+            component: Article
+        },
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+        {
+            path: '/search/:search',
+            name: 'search',
+            component: Search
+        },
 
-export default router
+
+    ]
+});
